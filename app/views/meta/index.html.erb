@@ -1,0 +1,75 @@
+<div class="alert alert-info">
+  <p>
+    <strong>Bienvenue !</strong> Vous pouvez personnaliser les données de vos
+    commandes via cette page.
+  </p>
+</div>
+
+<div class="col-md-6">
+  <h3>Vos préférences</h3>
+
+  <%= form_with(model: current_user, url: '', local: true, class: 'form') do |f| %>
+    <div class="form-group">
+      <p>Type de panier</p>
+
+      <% @carts.each do |cart| %>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag :cart_id, cart.id %>
+            <%= cart.name %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+
+    <p>
+      <em>Choisissez le ou les beurres que vous souhaitez ajouter à votre panier.</em>
+    </p>
+
+    <% butters.each do |butter| %>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag butter.second %>
+          <%= butter.first %>
+        </label>
+      </div>
+    <% end %>
+
+    <h4>Fromages frais</h4>
+
+    <table class="table">
+      <% @cheeses.each do |cheese| %>
+        <tr>
+          <td><%= cheese.name %></td>
+          <td><input type="number" value="0"></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <h4>Yaourts disponibles</h4>
+
+    <table class="table">
+      <% @yaourts.each do |yaourt| %>
+        <tr>
+          <td><%= yaourt.name %></td>
+          <td><input type="number" value="0"></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+
+<div class="col-md-6">
+  <h3>Nos paniers</h3>
+
+  <% @carts.each do |cart| %>
+    <div class="well">
+      <h5><%= cart.name %> panier</h5>
+
+      <ul>
+        <li>Nombre de yaourts : <%= cart.nb_yaourts %></li>
+        <li>Nombre de beurres : <%= cart.nb_butters %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

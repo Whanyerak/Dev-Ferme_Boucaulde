@@ -1,0 +1,42 @@
+<div class="col-md-6">
+  <div class="well">
+    <h3>Bienvenue sur le site de la ferme de la Boucaulde</h3>
+
+    <p>
+      Ce site vous permet de gérer en ligne vos commandes au cours
+      de l'année en personalisant le contenu de votre panier.
+    </p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, tempore blanditiis veritatis. Explicabo officiis esse porro quasi praesentium exercitationem reprehenderit, in blanditiis autem, voluptates reiciendis qui harum consectetur! Recusandae, omnis!</p>
+
+    <img src="http://placebear.com/300/200" style="display: block; margin: auto">
+  </div>
+</div>
+
+<div class="col-md-6">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="form-group">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end -%>
+
+    <div class="form-group">
+      <%= f.submit "Log in", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+

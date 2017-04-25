@@ -1,0 +1,2 @@
+class Yaourt < ApplicationRecord
+end

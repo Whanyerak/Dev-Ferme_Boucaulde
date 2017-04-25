@@ -9,6 +9,35 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Ferme de la Boucaulde</a>
+
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
+            </li>
+          </div>
+        <% end %>
+      </div>
+    </nav>
+
+    <div class="container main">
+      <% if notice %>
+        <div class="alert alert-success">
+          <%= notice %>
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class="alert alert-danger">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+
+    </div>
   </body>
 </html>
