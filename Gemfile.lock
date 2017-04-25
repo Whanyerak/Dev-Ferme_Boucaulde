@@ -140,6 +140,7 @@ GEM
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    pg (0.20.0)
     polyamorous (1.3.1)
       activerecord (>= 3.0)
     rack (2.0.1)
@@ -200,7 +201,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -241,11 +241,11 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  pg (= 0.20.0)
   rails (~> 5.1.0.rc2)
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   therubyracer
   thin
   turbolinks (~> 5)
