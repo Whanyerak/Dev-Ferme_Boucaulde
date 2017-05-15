@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     logger.warn "Grosse bite wallah"
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sirname, :password, :password_confirmation])
   end
+
+  def access_denied(exception)
+    redirect_to '/', alert: exception.message
+  end
 end
