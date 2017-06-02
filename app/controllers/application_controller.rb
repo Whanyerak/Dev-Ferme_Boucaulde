@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    logger.warn "Grosse bite wallah"
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :sirname, :password, :password_confirmation])
   end
 
