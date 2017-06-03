@@ -4,3 +4,10 @@
 .container.main {
   margin-top: 5em;
 }
+
+.list-group-item {
+  .badge {
+    &.over { background: $brand-danger; }
+    &.remaining { background: $brand-primary; }
+  }
+}

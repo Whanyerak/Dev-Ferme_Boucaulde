@@ -37,6 +37,31 @@
     <% end %>
   </div>
 
+  <div class="col-md-6">
+    <p class="lead">
+      Vous pouvez répartir votre commande comme vous le souhaitez. Vous disposez
+      encore des points suivants :
+
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span id="butter" data-max="<%= current_user.cart.nb_butters %>" class="badge"></span>
+          Beurres
+        </li>
+
+        <li class="list-group-item">
+          <span id="cheeses" data-max="<%= current_user.cart.nb_cheeses %>"
+            class="badge"></span>
+          Fromages frais
+        </li>
+
+        <li class="list-group-item">
+          <span id="yaourts" data-max="<%= current_user.nb_yaourts %>" class="badge"></span>
+          Yaourts
+        </li>
+      </ul>
+    </p>
+  </div>
+
   <div class="clearfix"></div>
 
   <div class="col-md-6">
@@ -59,7 +84,8 @@
     </table>
   </div>
 
-  <div class="pull-right">
-    <%= f.submit "Enregistrer", class: 'btn btn-primary' %>
-  </div>
+  <%= f.submit "Enregistrer votre commande", class: 'btn btn-primary' %>
 <% end %>
+
+<p class="clearfix"></p>
+<hr>
