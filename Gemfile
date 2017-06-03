@@ -9,8 +9,7 @@ end
 gem 'rails', '~> 5.1.1'
 # Use sqlite3 as the database for Active Record
 
-gem 'pg', '0.20.0'
-# gem 'sqlite3'
+gem 'pg', '0.20'
 
 # Use Puma as the app server
 gem 'thin'
@@ -38,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 
 gem 'activeadmin', '~> 1.0.0'
+
+gem 'active_decorator', '~> 0.9.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
