@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170603152120) do
     t.datetime "updated_at", null: false
     t.boolean "admin"
     t.json "shipment", default: {"butters"=>{}, "cheeses"=>{}, "yaourts"=>{}}
+    t.integer "nb_yaourts"
     t.index ["cart_id"], name: "index_users_on_cart_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
