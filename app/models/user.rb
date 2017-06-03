@@ -7,4 +7,8 @@ class User < ApplicationRecord
   def admin?
     admin == true
   end
+
+  def full_name
+    first_name + " " + last_name.upcase
+  end
 end
