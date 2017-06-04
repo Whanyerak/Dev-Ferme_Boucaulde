@@ -3,6 +3,7 @@ fr:
     models:
       cart: Panier
       cheese: Fromage
+      distribution_point: Points de distribution
   shipment:
     errors:
       too_many_yaourts: 'Vous essayez de réserver %{nb_yaourts} yaourts mais ne pouvez en réserver que %{max_yaourts}.'
