@@ -9,7 +9,7 @@ class MetaController < ApplicationController
     @shipment = Shipment.new(params.permit!.to_hash)
 
     if @shipment.valid_for?(current_user)
-      render :index, notice: 'Votre commande a été mise à jour avec succès.'
+      redirect_to '/', notice: 'Votre commande a été mise à jour avec succès.'
     else
       render :index
     end
