@@ -43,4 +43,12 @@ class Shipment
 
     valid
   end
+
+  def to_hash
+    {
+      "butters" => @butters,
+      "cheeses" => @cheeses,
+      "yaourts" => @yaourts
+    }
+  end
 end
