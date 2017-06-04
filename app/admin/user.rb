@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :first_name, :last_name, :nb_yaourts, :cart,
+  permit_params :first_name, :last_name, :nb_yaourts, :cart, :distribution_point,
                 :email, :password, :password_confirmation
 
   index do
@@ -20,6 +20,7 @@ ActiveAdmin.register User do
       f.input :last_name
       f.input :nb_yaourts
       f.input :cart, as: :select, include_blank: false
+      f.input :distribution_point, as: :select, include_blank: false
       f.input :email
       f.input :password
       f.input :password_confirmation

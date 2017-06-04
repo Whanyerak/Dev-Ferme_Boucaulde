@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   belongs_to :cart
+  belongs_to :distribution_point
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
