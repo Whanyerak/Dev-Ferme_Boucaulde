@@ -30,7 +30,7 @@
     <% butters.each do |butter| %>
       <div class="checkbox">
         <label>
-          <%= check_box_tag butter.second %>
+          <%= butter_check_box(butter, @shipment) %>
           <%= butter.first %>
         </label>
       </div>
@@ -44,7 +44,7 @@
 
       <ul class="list-group">
         <li class="list-group-item">
-          <span id="butter" data-max="<%= current_user.cart.nb_butters %>" class="badge"></span>
+          <span id="butters" data-max="<%= current_user.cart.nb_butters %>" class="badge"></span>
           Beurres
         </li>
 

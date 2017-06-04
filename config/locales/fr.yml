@@ -7,3 +7,4 @@ fr:
     errors:
       too_many_yaourts: 'Vous essayez de réserver %{nb_yaourts} yaourts mais ne pouvez en réserver que %{max_yaourts}.'
       too_many_cheeses: 'Vous essayez de réserver %{nb_cheeses} fromages frais mais ne pouvez en réserver que %{max_cheeses}.'
+      too_many_butters: 'Vous essayez de réserver %{nb_butters} beurres différents mais vous ne pouvez en réserver que %{max_butters}.'

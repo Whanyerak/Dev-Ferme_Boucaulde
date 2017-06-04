@@ -16,11 +16,18 @@ $ ->
   # type of resource ; neat to see the remaining
   # points live, editinf the weekly shipment.
   remaining_points_for = (type) ->
-    span  = spans[type]
-    total = fields[type].toArray().map (field) ->
-      parseInt(field.value || 0)
-    .reduce (x, y) ->
-      x + y
+    span = spans[type]
+
+    if type != 'butter'
+      total = fields[type].toArray().map (field) ->
+        parseInt(field.value || 0)
+      .reduce (x, y) ->
+        x + y
+    else
+      total = fields[type].toArray().filter (field) ->
+        $(field).is(':checked')
+      .length
+
     value = parseInt(span.data('max')) - total
 
     span.html(value)
@@ -34,9 +41,10 @@ $ ->
       span.removeClass('remaining')
           .addClass('over')
 
+  remaining_points_for 'butter'
   remaining_points_for 'cheese'
   remaining_points_for 'yaourt'
 
-  $('input[type="number"]').on 'change', ->
+  $('input[type="number"], input[type="checkbox"]').on 'change', ->
     type = $(this).data('type')
     remaining_points_for type
