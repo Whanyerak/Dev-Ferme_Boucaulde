@@ -25,6 +25,10 @@ gem 'activeadmin', '~> 1.0.0'
 
 gem 'active_decorator', '~> 0.9.0'
 
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'

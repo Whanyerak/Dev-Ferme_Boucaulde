@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
 
   post '/' => 'meta#update'
+  get '/admin/excel/:id' => 'admin/distribution_points#export', as: :export_distribution_point
 end

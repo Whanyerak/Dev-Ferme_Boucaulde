@@ -1,0 +1,63 @@
+wb = xlsx_package.workbook
+
+wb.styles do |s|
+  wb.add_worksheet(name: "Feuille 1") do |sheet|
+    values = [" "] + @yaourts.map(&:name) + butters.map(&:first) + @cheeses.map(&:name)
+    default_style = {
+      align: {
+        horizontal: :center,
+        vertical: :center,
+        wrap_text: true
+      },
+      border: { style: :thin, color: "00" }
+    }
+    styles = [s.add_style(default_style)]
+
+    @yaourts.size.times do
+      styles << s.add_style(default_style.merge(bg_color: 'F7E06C', b: true))
+    end
+
+    butters.size.times do
+      styles << s.add_style(default_style.merge(bg_color: 'F79B6C', b: true))
+    end
+
+    @cheeses.size.times do
+      styles << s.add_style(default_style.merge(bg_color: 'C9F76C', b: true))
+    end
+
+    sheet.add_row values, style: styles
+
+    @distribution_point.users.each_with_index do |user, index|
+      user_default_style = default_style.merge(bg_color: '6CBFF7')
+
+      if index % 3 == 0
+        user_default_style = user_default_style.merge(bg_color: 'FFFFFF')
+      elsif index % 2 == 0
+        user_default_style = user_default_style.merge(bg_color: '8294AF')
+      end
+
+      user_yaourts = user.shipment['yaourts']
+      user_cheeses = user.shipment['cheeses']
+      user_butters = user.shipment['butters']
+      user_values  = [user.full_name]
+      user_styles  = [s.add_style(user_default_style)]
+
+      @yaourts.each do |yaourt|
+        user_values << user_yaourts.fetch(yaourt.id.to_s, 0)
+        user_styles << s.add_style(user_default_style)
+      end
+
+      butters.each do |butter|
+        user_values << (user_butters.key?(butter.second) ? "Oui": "Non")
+        user_styles << s.add_style(user_default_style)
+      end
+
+      @cheeses.each do |cheese|
+        user_values << user_cheeses.fetch(cheese.id.to_s, 0)
+        user_styles << s.add_style(user_default_style)
+      end
+
+      sheet.add_row user_values, style: user_styles
+    end
+  end
+end
