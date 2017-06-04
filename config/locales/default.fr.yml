@@ -1,4 +1,3 @@
----
 fr:
   activerecord:
     errors:
@@ -147,9 +146,9 @@ fr:
     select:
       prompt: Veuillez sélectionner
     submit:
-      create: Créer un(e) %{model}
-      submit: Enregistrer ce(tte) %{model}
-      update: Modifier ce(tte) %{model}
+      create: Créer
+      submit: Enregistrer
+      update: Enregistrer
   number:
     currency:
       format:
@@ -207,6 +206,6 @@ fr:
     am: am
     formats:
       default: "%d %B %Y %Hh %Mmin %Ss"
-      long: "%A %d %B %Y %Hh%M"
+      long: "%A %d %B %Y à %Hh%M"
       short: "%d %b %Hh%M"
     pm: pm

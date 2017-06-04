@@ -8,6 +8,9 @@ ActiveAdmin.register DistributionPoint do
     actions
   end
 
+  filter :users
+  filter :name
+
   controller do
     def export
       @distribution_point = DistributionPoint.find(params[:id])

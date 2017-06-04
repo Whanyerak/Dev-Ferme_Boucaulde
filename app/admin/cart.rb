@@ -1,4 +1,4 @@
-ActiveAdmin.register Cart do
+ActiveAdmin.register Cart, as: 'Panier' do
   permit_params :name, :nb_butters, :nb_cheeses
 
   index do

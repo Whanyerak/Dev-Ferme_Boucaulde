@@ -1,4 +1,4 @@
-ActiveAdmin.register User do
+ActiveAdmin.register User, as: 'Utilisateur' do
   permit_params :first_name, :last_name, :nb_yaourts, :cart_id,
                 :distribution_point_id, :email, :password, :password_confirmation
 
