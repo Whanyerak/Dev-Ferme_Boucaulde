@@ -9,22 +9,24 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="header">
       <div class="container">
-        <a class="navbar-brand" href="#">Ferme de la Boucaulde</a>
-
         <% if user_signed_in? %>
-          <ul class="nav navbar-nav navbar-right">
+          <div class="pull-right">
             <% if current_user.admin? %>
-              <li><%= link_to "Administration", admin_root_path %></li>
+              <%= link_to "Administration", admin_root_path %></li>
             <% end %>
-            <li>
-              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
-            </li>
+            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
           </div>
         <% end %>
+
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAErUlEQVRoge3Za4hVVRQH8N9YiJY6ZpSoPSjCioyKooeFVpCURUbRi6REKAiRHvQlyois+dIX+1BYkT0oKixJTCjJR0Vk4YdeZDRkiT0sCTHEx8zcuX3Ye3vPvXPnOnnP7U50/rA4e99z7l7rv9Y+6+y9NgUKFChQoECBAgWaxmHtNqDVGI278Qimx9+uxuS2WZQjRtT0T8W3WIpJGIdZWC04ouNfta4FuACbcBcm4nuUsQQrsC32t2CB4KD/NOlO/CiQ2hGvpXjNyu84q0025o656EW/QLYfPVF6sRPnts26HHETnsfXAsm+eE1R7YnX9w5VQaeQFGZgNq7AeThOPql/ZNQxJeo5X0g4t2AhFuM5rMcuA6dtraRo78CEgyk/ETdjEV7F5/hNxWtZ+Qub8T5ei0YtjddleDn+/ibewjtYJXh+PTYKUfoB2+N4vUMg1BvtSZHtr/NMsvf+RmSPjeQaea4v48GDGXaokqZpXySXJEuwkf70/1J05DGDEb4h/mFPAyW1kpyQnu9RbWQ96ctIKePAWhmKY5L0DTJ+GeuEb/EA3BOV7x+iwnZKsq/RbOvD7th+ZTDCZewbBoSGQjZL+kM8KXyqrsSazPO/Yn49wvPiIInwcI1yepVK+AMz65HBdcIqa+Ig983JeKzWi8NNUha+bTAyQ8EsYXXyi0oiaDexepLs2obDmyE8U/guXhsHTMu2dhOsF91+vN4MWTgTP8f2+jjocCSdviIPNkv45Ei4A9erfleGi6QNQj9ubIbsEThaWOZNwChh1ZXdibSbbJL0Dl/cDGGR5GacFPvPqni03SSzEU4J9bRmCXfgC0yN/dkqHh0uEU527MbxzRKGT3FGbI8TKgZl9asJ7SCbXXCMzYPwWtVVgncNj2mdIpvseCYPsrBSdTJ4PCrY32bCZZVk1Y2j5FSUW47LM/2hJq7sUjRtEbN75/6aZ7LJp0d1LapUZ8xSvLcH5+RBNGEFrortTtXvcDOJq3bf/E9zQqqENKxgHApWCkUywlYrKUvRynq+XjL5Ey9hg1Ar3lnn+ST7hOL5G3gItwrO/kT1Ki9N5U1acHyyGnfG9loDp3M9ssn4svAKJIwQFjFThbwwB7dHYjNwgvrv4fw47v6a67xcGNZgDbqisXtVotqF71SXRdM0TQltl7A8bRanqMyYrGNn5jD2AKzCl7HdHRV1x35aiNRLYNuFqOWFDXHcvULFooyLchz/AJYLUYMXo6L7Yn+MsAdN0d0ivG9d8j+hmyaQ/UrYp5dxSc46EGrR/bH9aFR0eub+HSpTbLrW4jOhpj026rymFUqextbYfkyI5JiaZ9bF3+dq3aFzh1Co74r6S8LZb+4ngAvxVGwvFqb3qJpnLhU8/kLst4r0RmEJOT7qW9YiPQfwsDB1azNvB74RvrGTM7/ljQ+EI9GRQr7YJacd0mBYIHj2iQb3PhIKaU0V0wbBkqhjmvAtLwnrhNrT/9zQKXySenFhnftbo0ELYz9PQzqE08SfhKLEeGHZW8ZlOeoZgEUC4bfr3JsSjSkL2bsVOBsf4wEcKRzR1ibRXDFaKPlMamDQvcJZboECBQoUKFCgQIEC/yf8DaAKFKsGZmsqAAAAAElFTkSuQmCC">
+
+        <h3>
+          Ferme de la <span class="brand">Boucaulde</span>
+        </h3>
       </div>
-    </nav>
+    </div>
 
     <div class="container main">
       <% if notice %>

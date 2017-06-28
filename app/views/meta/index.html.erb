@@ -1,9 +1,33 @@
-<div class="alert alert-info">
-  <p>
+<div class="col-md-12">
+  <p class="lead">
     <strong>Bienvenue !</strong> Vous pouvez personnaliser les données de vos
     commandes via cette page.
   </p>
 </div>
+
+<div class="col-md-4">
+  <div class="item">
+    Beurres
+    <div id="butters" data-max="<%= current_user.cart.nb_butters %>" class="counter"></div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="item">
+    <div id="cheeses" data-max="<%= current_user.cart.nb_cheeses %>"
+      class="counter"></div>
+    Fromages frais
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="item">
+    Yaourts
+    <div id="yaourts" data-max="<%= current_user.nb_yaourts %>" class="counter"></div>
+  </div>
+</div>
+
+<div class="clearfix"></div><br>
 
 <% if @shipment.errors.any? %>
   <div class="alert alert-danger">
@@ -21,51 +45,21 @@
 
 <%= form_with(url: '/', local: true, class: 'form') do |f| %>
   <div class="col-md-6">
-    <h3>Votre commande hebdomadaire</h3>
+    <h3>Beurres</h3>
 
-    <p>
-      <em>Choisissez le ou les beurres que vous souhaitez ajouter à votre panier.</em>
-    </p>
+    <table class="table">
+      <% butters.each do |butter| %>
+        <tr>
+          <td>
+            <%= butter_check_box(butter, @shipment) %>
+            <%= butter.first %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
 
-    <% butters.each do |butter| %>
-      <div class="checkbox">
-        <label>
-          <%= butter_check_box(butter, @shipment) %>
-          <%= butter.first %>
-        </label>
-      </div>
-    <% end %>
-  </div>
 
-  <div class="col-md-6">
-    <p class="lead">
-      Vous pouvez répartir votre commande comme vous le souhaitez. Vous disposez
-      encore des points suivants :
-
-      <ul class="list-group">
-        <li class="list-group-item">
-          <span id="butters" data-max="<%= current_user.cart.nb_butters %>" class="badge"></span>
-          Beurres
-        </li>
-
-        <li class="list-group-item">
-          <span id="cheeses" data-max="<%= current_user.cart.nb_cheeses %>"
-            class="badge"></span>
-          Fromages frais
-        </li>
-
-        <li class="list-group-item">
-          <span id="yaourts" data-max="<%= current_user.nb_yaourts %>" class="badge"></span>
-          Yaourts
-        </li>
-      </ul>
-    </p>
-  </div>
-
-  <div class="clearfix"></div>
-
-  <div class="col-md-6">
-    <h4>Fromages frais</h4>
+    <h3>Fromages frais</h3>
 
     <table class="table">
       <% @cheeses.each do |cheese| %>
@@ -75,7 +69,7 @@
   </div>
 
   <div class="col-md-6">
-    <h4>Yaourts disponibles</h4>
+    <h3>Yaourts disponibles</h3>
 
     <table class="table">
       <% @yaourts.each do |yaourt| %>

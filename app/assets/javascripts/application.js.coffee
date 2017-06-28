@@ -33,12 +33,12 @@ $ ->
     span.html(value)
 
     if value == 0
-      span.removeClass('over remaining')
+      span.parent().removeClass('over remaining')
     else if value > 0
-      span.removeClass('over')
+      span.parent().removeClass('over')
           .addClass('remaining')
     else
-      span.removeClass('remaining')
+      span.parent().removeClass('remaining')
           .addClass('over')
 
   remaining_points_for 'butter'
