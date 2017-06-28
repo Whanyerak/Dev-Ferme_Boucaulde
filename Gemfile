@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.1.1'
-gem 'pg', '0.20'
+gem 'rails', '~> 5.1.2'
+gem 'pg', '0.21'
 
 gem 'thin'
 
@@ -10,12 +10,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 
-gem 'bootstrap-sass', '~> 3.3.6'
-
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 
-gem 'devise'
+gem 'devise', '~> 4.3.0'
 gem 'activeadmin', '~> 1.0.0'
 
 gem 'active_decorator', '~> 0.9.0'
