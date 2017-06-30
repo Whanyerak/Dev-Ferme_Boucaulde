@@ -1,5 +1,5 @@
 ActiveAdmin.register Yaourt do
-  permit_params :name
+  permit_params :name, :disabled
 
   filter :name
 
@@ -7,6 +7,7 @@ ActiveAdmin.register Yaourt do
     selectable_column
     id_column
     column :name
+    column :disabled
     actions
   end
 end

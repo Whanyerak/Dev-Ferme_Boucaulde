@@ -19,6 +19,7 @@ fr:
         nb_yaourts: Nombre de yaourts
       yaourt:
         name: Nom
+        disabled: Indisponible
       cheese:
         name: Nom
       distribution_point:
