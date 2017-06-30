@@ -10,7 +10,7 @@ class Shipment
 
   def valid_for?(user)
     valid      = true
-    nb_butters = @butters.keys.size
+    nb_butters = @butters.values.map(&:to_i).sum
     nb_yaourts = @yaourts.values.map(&:to_i).sum
     nb_cheeses = @cheeses.values.map(&:to_i).sum
 

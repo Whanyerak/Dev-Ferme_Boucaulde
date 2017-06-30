@@ -18,15 +18,10 @@ $ ->
   remaining_points_for = (type) ->
     span = spans[type]
 
-    if type != 'butter'
-      total = fields[type].toArray().map (field) ->
-        parseInt(field.value || 0)
-      .reduce (x, y) ->
-        x + y
-    else
-      total = fields[type].toArray().filter (field) ->
-        $(field).is(':checked')
-      .length
+    total = fields[type].toArray().map (field) ->
+      parseInt(field.value || 0)
+    .reduce (x, y) ->
+      x + y
 
     value = parseInt(span.data('max')) - total
 
@@ -45,6 +40,6 @@ $ ->
   remaining_points_for 'cheese'
   remaining_points_for 'yaourt'
 
-  $('input[type="number"], input[type="checkbox"]').on 'change', ->
+  $('input[type="number"]').on 'change', ->
     type = $(this).data('type')
     remaining_points_for type

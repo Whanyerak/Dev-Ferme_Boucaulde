@@ -1,0 +1,9 @@
+tiny:
+  name: Petit
+  nb_butters: 1
+  nb_cheeses: 5
+
+big:
+  name: Grand
+  nb_butters: 2
+  nb_cheeses: 10

@@ -50,14 +50,15 @@
     <table class="table">
       <% butters.each do |butter| %>
         <tr>
+          <td><%= butter.first %></td>
           <td>
-            <%= butter_check_box(butter, @shipment) %>
-            <%= butter.first %>
+            <%= number_field_tag "butters[#{butter.last}]",
+              @shipment.butters[butter.last.to_s] || 0,
+              min: 0, data: { type: 'butter' } %>
           </td>
         </tr>
       <% end %>
     </table>
-
 
     <h3>Fromages frais</h3>
 
