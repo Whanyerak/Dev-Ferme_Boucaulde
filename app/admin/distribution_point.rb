@@ -18,7 +18,7 @@ ActiveAdmin.register DistributionPoint do
       @cheeses = Cheese.all.to_a
       @yaourts = Yaourt.all.to_a
 
-      filename = @distribution_point.name.underscore + ".xlsx"
+      filename = @distribution_point.name + ".xlsx"
       render xlsx: "export", filename: filename
     end
   end
