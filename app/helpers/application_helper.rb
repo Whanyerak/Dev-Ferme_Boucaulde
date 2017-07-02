@@ -1,16 +1,27 @@
 module ApplicationHelper
+  Butter = Struct.new(:id, :name)
+
   def butters
     [
-      ['Beurre salé', 1],
-      ['Beurre demi-sel', 2],
-      ['Beurre doux', 3]
+      Butter.new(1, 'Beurre salé'),
+      Butter.new(2, 'Beurre demi-sel'),
+      Butter.new(3, 'Beurre doux')
     ]
   end
 
-  def butter_check_box(butter, shipment)
-    id      = butter.second
-    checked = shipment.butters.key?(id.to_s)
+  def commodity_field(item, kind)
+    tag.tr do
+      tag.td(item.name) +
+      tag.td(commodity_field_tag(item, kind))
+    end
+  end
 
-    check_box_tag "butters[#{id}]", true, checked, data: { type: 'butter' }
+  def commodity_field_tag(item, kind)
+    number_field_tag "#{kind}[#{item.id}]", value(item, kind), min: 0,
+      data: { type: kind.to_s.singularize }
+  end
+
+  def value(item, kind)
+    current_user.shipment[kind].fetch(item.id, 0)
   end
 end

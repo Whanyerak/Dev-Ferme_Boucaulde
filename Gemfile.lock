@@ -24,7 +24,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active_decorator (0.9.0)
     activeadmin (1.0.0)
       arbre (>= 1.1.1)
       bourbon
@@ -231,7 +230,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_decorator (~> 0.9.0)
   activeadmin (~> 1.0.0)
   axlsx (= 2.1.0.pre)
   axlsx_rails

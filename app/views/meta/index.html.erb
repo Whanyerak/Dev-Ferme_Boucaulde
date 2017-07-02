@@ -49,14 +49,7 @@
 
     <table class="table">
       <% butters.each do |butter| %>
-        <tr>
-          <td><%= butter.first %></td>
-          <td>
-            <%= number_field_tag "butters[#{butter.last}]",
-              current_user.butters.fetch(butter.last, 0),
-              min: 0, data: { type: 'butter' } %>
-          </td>
-        </tr>
+        <%= commodity_field(butter, :butters) %>
       <% end %>
     </table>
 
@@ -64,7 +57,7 @@
 
     <table class="table">
       <% @cheeses.each do |cheese| %>
-        <%= cheese.field %>
+        <%= commodity_field(cheese, :cheeses) %>
       <% end %>
     </table>
   </div>
@@ -74,7 +67,7 @@
 
     <table class="table">
       <% @yaourts.each do |yaourt| %>
-        <%= yaourt.field %>
+        <%= commodity_field(yaourt, :yaourts) %>
       <% end %>
     </table>
   </div>

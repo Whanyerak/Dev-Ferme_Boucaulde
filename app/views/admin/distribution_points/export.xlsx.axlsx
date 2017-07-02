@@ -2,7 +2,7 @@ wb = xlsx_package.workbook
 
 wb.styles do |s|
   wb.add_worksheet(name: "Feuille 1") do |sheet|
-    values = [" "] + @yaourts.map(&:name) + butters.map(&:first) + @cheeses.map(&:name)
+    values = [" "] + @yaourts.map(&:name) + butters.map(&:name) + @cheeses.map(&:name)
     default_style = {
       align: {
         horizontal: :center,
@@ -48,7 +48,7 @@ wb.styles do |s|
       end
 
       butters.each do |butter|
-        user_values << user_butters.fetch(butter.second, 0)
+        user_values << user_butters.fetch(butter.id, 0)
         user_styles << s.add_style(user_default_style)
       end
 
