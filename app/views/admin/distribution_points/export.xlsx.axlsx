@@ -36,9 +36,9 @@ wb.styles do |s|
         user_default_style = user_default_style.merge(bg_color: '8294AF')
       end
 
-      user_yaourts = user.shipment['yaourts']
-      user_cheeses = user.shipment['cheeses']
-      user_butters = user.shipment['butters']
+      user_yaourts = user.yaourts
+      user_cheeses = user.cheeses
+      user_butters = user.butters
       user_values  = [user.full_name]
       user_styles  = [s.add_style(user_default_style)]
 

@@ -2,16 +2,12 @@ class MetaController < ApplicationController
   before_action :load_resources
 
   def index
-    @shipment = Shipment.new(current_user.shipment)
   end
 
   def update
-    @shipment = Shipment.new(params.permit!.to_hash)
+    current_user.shipment = params.permit(butters: {}, yaourts: {}, cheeses: {}).to_hash
 
-    if @shipment.valid_for?(current_user)
-      current_user.shipment = @shipment
-      current_user.save
-
+    if current_user.save
       redirect_to '/', notice: 'Votre commande a été mise à jour avec succès.'
     else
       render :index

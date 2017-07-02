@@ -1,17 +1,17 @@
 module CheeseDecorator
-  def field(shipment)
+  def field
     tag.tr do
       tag.td(name) +
-      tag.td(field_tag(shipment))
+      tag.td(field_tag)
     end
   end
 
-  def field_tag(shipment)
-    number_field_tag(field_name, value(shipment), min: 0, data: { type: 'cheese' })
+  def field_tag
+    number_field_tag(field_name, value, min: 0, data: { type: 'cheese' })
   end
 
-  def value(shipment)
-    shipment.cheeses[id.to_s] || 0
+  def value
+    current_user.cheeses.fetch(id, 0)
   end
 
   def field_name

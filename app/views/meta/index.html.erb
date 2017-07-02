@@ -29,13 +29,13 @@
 
 <div class="clearfix"></div><br>
 
-<% if @shipment.errors.any? %>
+<% if current_user.errors.any? %>
   <div class="alert alert-danger">
     <p>Erreur(s) lors de la sauvegarde de votre commande :</p>
 
     <p>
       <ul>
-        <% @shipment.errors.each do |error| %>
+        <% current_user.errors.full_messages.each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>
@@ -53,7 +53,7 @@
           <td><%= butter.first %></td>
           <td>
             <%= number_field_tag "butters[#{butter.last}]",
-              @shipment.butters[butter.last.to_s] || 0,
+              current_user.butters.fetch(butter.last, 0),
               min: 0, data: { type: 'butter' } %>
           </td>
         </tr>
@@ -64,7 +64,7 @@
 
     <table class="table">
       <% @cheeses.each do |cheese| %>
-        <%= cheese.field(@shipment) %>
+        <%= cheese.field %>
       <% end %>
     </table>
   </div>
@@ -74,7 +74,7 @@
 
     <table class="table">
       <% @yaourts.each do |yaourt| %>
-        <%= yaourt.field(@shipment) %>
+        <%= yaourt.field %>
       <% end %>
     </table>
   </div>

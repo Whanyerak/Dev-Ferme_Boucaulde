@@ -1,0 +1,6 @@
+default:
+  email: someemail@email.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  nb_yaourts: 10
+  cart: tiny
+  distribution_point: avesnes

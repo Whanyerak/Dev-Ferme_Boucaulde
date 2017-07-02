@@ -1,0 +1,11 @@
+nature:
+  name: Nature
+  disabled: false
+
+chocolate:
+  name: Chocolate
+  disabled: true
+
+vanilla:
+  name: Vanilla
+  disabled: false
