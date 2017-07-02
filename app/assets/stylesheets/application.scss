@@ -79,7 +79,7 @@ $brand-primary: #60BA62;
     right: 0;
     top: 0;
     bottom: 0;
-    background: url(home.jpg);
+    background: image-url("home.jpg");
     background-size: auto 100%;
     filter: opacity(0.9) brightness(1) contrast(100%);
   }
