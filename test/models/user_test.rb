@@ -88,4 +88,17 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 5, user.shipment[:yaourts][nature.id]
     assert_equal 5, user.shipment[:yaourts][chocolate.id]
   end
+
+  test "the shipment can be properly saved when it is valid" do
+    user = users(:default)
+
+    user.shipment = {
+      "yaourts" => {1 => 2},
+      "butters" => {},
+      "cheeses" => {}
+    }
+
+    assert_predicate user, :valid?
+    user.save!
+  end
 end

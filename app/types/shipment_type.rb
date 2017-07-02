@@ -1,7 +1,9 @@
+require 'json'
+
 class ShipmentType < ActiveRecord::Type::Value
   def cast(value)
     if value.kind_of?(String)
-      hash = YAML.load(value)
+      hash = JSON.load(value)
     else
       hash = value
     end
@@ -14,5 +16,9 @@ class ShipmentType < ActiveRecord::Type::Value
     end
 
     hash
+  end
+
+  def serialize(hash)
+    JSON.dump(hash)
   end
 end
