@@ -11,7 +11,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
 
 gem 'devise', '~> 4.3.0'
 gem 'activeadmin', '~> 1.0.0'
