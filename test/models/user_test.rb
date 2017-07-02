@@ -42,4 +42,50 @@ class UserTest < ActiveSupport::TestCase
 
     assert user.valid?
   end
+
+  test "#yaourts with disabled yaourts" do
+    nature    = yaourts(:nature)
+    chocolate = yaourts(:chocolate)
+    vanilla   = yaourts(:vanilla)
+
+    user = User.new
+    user.shipment = {
+      'yaourts' => {
+        nature.id    => "3",
+        chocolate.id => "7",
+        vanilla.id   => "5"
+      },
+      'butters' => {},
+      'cheeses' => {}
+    }
+
+    yaourts = user.yaourts
+
+    assert_equal 10, yaourts[nature.id]
+    assert_equal 5, yaourts[vanilla.id]
+
+    assert chocolate.disabled?
+    assert_nil yaourts[chocolate.id]
+  end
+
+  test "calling #yaourts doesn't change the shipment" do
+    nature    = yaourts(:nature)
+    chocolate = yaourts(:chocolate)
+    user      = User.new
+
+    user.shipment = {
+      'yaourts' => {
+        nature.id    => 5,
+        chocolate.id => 5
+      },
+      'butters' => {},
+      'cheeses' => {}
+    }
+
+    # Strip out the disabled yogurts from a *copy*.
+    user.yaourts
+
+    assert_equal 5, user.shipment[:yaourts][nature.id]
+    assert_equal 5, user.shipment[:yaourts][chocolate.id]
+  end
 end

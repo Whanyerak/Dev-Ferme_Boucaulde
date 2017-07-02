@@ -49,8 +49,25 @@ class User < ApplicationRecord
     shipment[:butters]
   end
 
+  # Returns a hash which is a representation of the shipment for the
+  # yogurts but with the disabled ones stripped out from the hash and
+  # their value added to the default yogurt instead.
   def yaourts
-    shipment[:yaourts]
+    disabled_ids = Yaourt.disabled.pluck(:id)
+
+    return shipment[:yaourts] unless disabled_ids.present?
+
+    copy       = shipment[:yaourts].dup
+    default    = Yaourt.default.id
+    to_nature  = copy.keys & disabled_ids
+    nb_natures = 0
+
+    to_nature.each do |id|
+      nb_natures += copy.delete(id)
+    end
+
+    copy[default] = copy.fetch(default, 0) + nb_natures
+    copy
   end
 
   def cheeses

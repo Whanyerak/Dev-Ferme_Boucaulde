@@ -11,7 +11,7 @@ module YaourtDecorator
   end
 
   def value
-    current_user.yaourts.fetch(id, 0)
+    current_user.shipment[:yaourts].fetch(id, 0)
   end
 
   def field_name
