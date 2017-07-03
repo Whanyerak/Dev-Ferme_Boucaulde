@@ -4,7 +4,8 @@ ActiveAdmin.register User, as: 'Utilisateur' do
 
   index do
     selectable_column
-    column :full_name
+    column :first_name
+    column :last_name { |u| u.last_name.upcase }
     column :nb_yaourts
     column :cart
     column :distribution_point
@@ -14,6 +15,7 @@ ActiveAdmin.register User, as: 'Utilisateur' do
 
   filter :first_name
   filter :last_name
+  filter :distribution_point
 
   controller do
     def update_resource(object, attributes)
