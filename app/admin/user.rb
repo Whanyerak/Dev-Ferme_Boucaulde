@@ -5,7 +5,7 @@ ActiveAdmin.register User, as: 'Utilisateur' do
   index do
     selectable_column
     column :first_name
-    column :last_name { |u| u.last_name.upcase }
+    column :last_name do |u| u.last_name.upcase end
     column :nb_yaourts
     column :cart
     column :distribution_point
