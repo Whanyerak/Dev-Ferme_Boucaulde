@@ -10,6 +10,11 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
+  before_create do
+    self.shipment[:yaourts][Yaourt.default.id] = self.nb_yaourts
+  end
+
   def admin?
     admin == true
   end

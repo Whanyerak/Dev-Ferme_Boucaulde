@@ -101,4 +101,20 @@ class UserTest < ActiveSupport::TestCase
     assert_predicate user, :valid?
     user.save!
   end
+
+  test "the default yogurt row is set to the maximum number of yogurts by default" do
+    user = User.new(
+      email: 'john@doe.fr',
+      password: 'abc123',
+      password_confirmation: 'abc123'
+    )
+
+    user.cart = carts(:big)
+    user.nb_yaourts = 10
+    user.distribution_point = distribution_points(:avesnes)
+
+    user.save
+
+    assert_equal 10, user.shipment[:yaourts][Yaourt.default.id]
+  end
 end
