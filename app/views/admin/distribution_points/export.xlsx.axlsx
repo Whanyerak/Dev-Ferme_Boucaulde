@@ -2,7 +2,12 @@ wb = xlsx_package.workbook
 
 wb.styles do |s|
   wb.add_worksheet(name: "Feuille 1") do |sheet|
-    values = [" "] + @yaourts.map(&:name) + butters.map(&:name) + @cheeses.map(&:name)
+    values = [" "] +
+              ["Panier", "Nombre yaourts"] +
+              @yaourts.map(&:name) +
+              butters.map(&:name) +
+              @cheeses.map(&:name)
+
     default_style = {
       alignment: {
         vertical: :center
@@ -10,7 +15,12 @@ wb.styles do |s|
       border: { style: :thin, color: "00" },
       padding: { top: 10 }
     }
-    styles = [s.add_style(default_style)]
+
+    styles = [
+      s.add_style(default_style),
+      s.add_style(default_style.merge(bg_color: 'E1BEE7', b: true)),
+      s.add_style(default_style.merge(bg_color: 'E1BEE7', b: true))
+    ]
 
     # Properly set the background color for the different kind of resources
     # (i.e. yogurts, butters, cheeses)
@@ -42,7 +52,10 @@ wb.styles do |s|
       user_cheeses = user.cheeses
       user_butters = user.butters
       user_values  = [user.full_name + "    "]
-      user_styles  = [s.add_style(user_default_style)]
+      user_styles  = [s.add_style(user_default_style)] * 3
+
+      user_values << user.ordering.cart.name
+      user_values << user.ordering.nb_yaourts
 
       @yaourts.each do |yaourt|
         user_values << user_yaourts.fetch(yaourt.id, 0)
