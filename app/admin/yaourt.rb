@@ -1,6 +1,7 @@
 ActiveAdmin.register Yaourt do
   permit_params :name, :disabled
 
+  config.sort_order = 'name_asc'
   filter :name
 
   index do

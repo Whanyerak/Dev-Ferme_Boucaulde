@@ -1,6 +1,7 @@
 ActiveAdmin.register Cheese, as: 'Fromage' do
   permit_params :name
 
+  config.sort_order = 'name_asc'
   filter :name
 
   index do

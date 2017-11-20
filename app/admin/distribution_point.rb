@@ -1,6 +1,8 @@
 ActiveAdmin.register DistributionPoint do
   permit_params :name
 
+  config.sort_order = 'name_asc'
+
   index do
     selectable_column
     id_column
