@@ -1,15 +1,13 @@
 ActiveAdmin.register User, as: 'Utilisateur' do
-  permit_params :first_name, :last_name, :nb_yaourts, :cart_id,
-                :distribution_point_id, :email, :password, :password_confirmation
+  permit_params :first_name, :last_name, :email,
+                :password, :password_confirmation, ordering_attributes: {}
 
   index do
     selectable_column
     column :first_name
     column :last_name do |u| u.last_name.upcase end
-    column :nb_yaourts
     column :cart
     column :distribution_point
-    column :email
     actions
   end
 
@@ -37,16 +35,24 @@ ActiveAdmin.register User, as: 'Utilisateur' do
   end
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs "Informations" do
       f.input :first_name
       f.input :last_name
-      f.input :nb_yaourts
-      f.input :cart, as: :select, include_blank: false
-      f.input :distribution_point, as: :select, include_blank: false
       f.input :email
       f.input :password
       f.input :password_confirmation
     end
+
+    f.inputs name: "Commande", for: :ordering_attributes do
+      f.fields_for :ordering_attributes do |ff|
+        ff.input :nb_yaourts
+        ff.input :cart_id, as: :select,
+          collection: Cart.pluck(:name, :id), include_blank: false
+        ff.input :distribution_point_id, as: :select,
+          collection: DistributionPoint.pluck(:name, :id), include_blank: false
+      end
+    end
+
     f.actions
   end
 end

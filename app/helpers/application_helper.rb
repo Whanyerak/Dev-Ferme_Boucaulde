@@ -22,6 +22,6 @@ module ApplicationHelper
   end
 
   def value(item, kind)
-    current_user.shipment[kind].fetch(item.id, 0)
+    current_user.send(kind).fetch(item.id, 0)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702165733) do
+ActiveRecord::Schema.define(version: 20171120082118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(version: 20170702165733) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orderings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cart_id"
+    t.bigint "distribution_point_id"
+    t.integer "nb_yaourts"
+    t.text "butters"
+    t.text "yaourts"
+    t.text "cheeses"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orderings_on_cart_id"
+    t.index ["distribution_point_id"], name: "index_orderings_on_distribution_point_id"
+    t.index ["user_id"], name: "index_orderings_on_user_id"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -80,6 +95,9 @@ ActiveRecord::Schema.define(version: 20170702165733) do
     t.boolean "disabled", default: false
   end
 
+  add_foreign_key "orderings", "carts"
+  add_foreign_key "orderings", "distribution_points"
+  add_foreign_key "orderings", "users"
   add_foreign_key "users", "carts"
   add_foreign_key "users", "distribution_points"
 end
