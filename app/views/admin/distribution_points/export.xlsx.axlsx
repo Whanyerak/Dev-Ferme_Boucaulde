@@ -4,15 +4,16 @@ wb.styles do |s|
   wb.add_worksheet(name: "Feuille 1") do |sheet|
     values = [" "] + @yaourts.map(&:name) + butters.map(&:name) + @cheeses.map(&:name)
     default_style = {
-      align: {
-        horizontal: :center,
-        vertical: :center,
-        wrap_text: true
+      alignment: {
+        vertical: :center
       },
-      border: { style: :thin, color: "00" }
+      border: { style: :thin, color: "00" },
+      padding: { top: 10 }
     }
     styles = [s.add_style(default_style)]
 
+    # Properly set the background color for the different kind of resources
+    # (i.e. yogurts, butters, cheeses)
     @yaourts.size.times do
       styles << s.add_style(default_style.merge(bg_color: 'F7E06C', b: true))
     end
@@ -27,6 +28,7 @@ wb.styles do |s|
 
     sheet.add_row values, style: styles
 
+    # Add the different users
     @distribution_point.users.each_with_index do |user, index|
       user_default_style = default_style.merge(bg_color: '6CBFF7')
 
@@ -39,7 +41,7 @@ wb.styles do |s|
       user_yaourts = user.yaourts
       user_cheeses = user.cheeses
       user_butters = user.butters
-      user_values  = [user.full_name]
+      user_values  = [user.full_name + "    "]
       user_styles  = [s.add_style(user_default_style)]
 
       @yaourts.each do |yaourt|
