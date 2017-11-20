@@ -10,7 +10,7 @@ fr:
     labels:
       ordering_attributes:
         nb_yaourts: Nombre de yaourts
-        distribution_point_id: Point de distribution
+        distribution_point_id: AMAP
         cart_id: Type de panier
   activerecord:
     attributes:
@@ -21,7 +21,7 @@ fr:
         shipment: ""
         admin: Administrateur
         cart: Type de panier
-        distribution_point: Point de distribution
+        distribution_point: AMAP
       yaourt:
         name: Nom
         disabled: Indisponible
@@ -37,7 +37,7 @@ fr:
     models:
       cart: Panier
       cheese: Fromage
-      distribution_point: Points de distribution
+      distribution_point: AMAP
   shipment:
     errors:
       too_many_yaourts: 'Vous essayez de réserver %{nb_yaourts} yaourts mais ne pouvez en réserver que %{max_yaourts}.'
