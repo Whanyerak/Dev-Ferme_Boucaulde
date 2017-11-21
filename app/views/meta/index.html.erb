@@ -29,14 +29,14 @@
 
 <div class="clearfix"></div><br>
 
-<% if current_user.errors.any? %>
+<% if current_user.ordering.errors.any? %>
   <div class="alert alert-danger">
     <p>Erreur(s) lors de la sauvegarde de votre commande :</p>
 
     <p>
       <ul>
-        <% current_user.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
+        <% current_user.ordering.errors.messages.each do |error| %>
+          <li><%= error[1][0] %></li>
         <% end %>
       </ul>
     </p>

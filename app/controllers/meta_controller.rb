@@ -5,9 +5,7 @@ class MetaController < ApplicationController
   end
 
   def update
-    current_user.shipment = params.permit(butters: {}, yaourts: {}, cheeses: {}).to_hash
-
-    if current_user.save
+    if current_user.ordering.update(ordering_params)
       redirect_to '/', notice: 'Votre commande a été mise à jour avec succès.'
     else
       render :index
@@ -18,5 +16,13 @@ class MetaController < ApplicationController
     def load_resources
       @yaourts = Yaourt.all
       @cheeses = Cheese.all
+    end
+
+    def ordering_params
+      params.require(:ordering)
+            .permit(butters: {}, yaourts: {}, cheeses: {})
+            .transform_values do |h|
+              h.transform_keys(&:to_i).transform_values(&:to_i)
+            end
     end
 end

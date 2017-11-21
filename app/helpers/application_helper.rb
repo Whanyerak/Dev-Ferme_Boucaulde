@@ -17,11 +17,11 @@ module ApplicationHelper
   end
 
   def commodity_field_tag(item, kind)
-    number_field_tag "#{kind}[#{item.id}]", value(item, kind), min: 0,
+    number_field_tag "ordering[#{kind}][#{item.id}]", value(item, kind), min: 0,
       data: { type: kind.to_s.singularize }
   end
 
   def value(item, kind)
-    current_user.send(kind).fetch(item.id, 0)
+    current_user.ordering.send(kind).fetch(item.id, 0)
   end
 end
