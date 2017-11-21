@@ -36,9 +36,28 @@ wb.styles do |s|
       styles << s.add_style(default_style.merge(bg_color: 'C9F76C', b: true))
     end
 
-    sheet.add_row values, style: styles
+    sheet.add_row values, style: styles, height: 20
 
-    # Add the different users
+    # Count the total values on a per resource basis
+    total  = ["Totaux", "", ""]
+    resources = [{
+        collection: @yaourts,
+        name:       :yaourts,
+        totals:     Array.new(@yaourts.size, 0)
+      },
+      {
+        collection: butters,
+        name:       :butters,
+        totals:     Array.new(butters.size, 0)
+      },
+      {
+        collection: @cheeses,
+        name:       :cheeses,
+        totals:     Array.new(@cheeses.size, 0)
+      }
+    ]
+
+    # Add the different users and make the totals
     @distribution_point.users.each_with_index do |user, index|
       user_default_style = default_style.merge(bg_color: '6CBFF7')
 
@@ -48,31 +67,39 @@ wb.styles do |s|
         user_default_style = user_default_style.merge(bg_color: '8294AF')
       end
 
-      user_yaourts = user.yaourts
-      user_cheeses = user.cheeses
-      user_butters = user.butters
-      user_values  = [user.full_name + "    "]
-      user_styles  = [s.add_style(user_default_style)] * 3
+      user_values = [user.full_name + "    "]
+      user_styles = [s.add_style(user_default_style)] * 3
 
       user_values << user.ordering.cart.name
       user_values << user.ordering.nb_yaourts
 
-      @yaourts.each do |yaourt|
-        user_values << user_yaourts.fetch(yaourt.id, 0)
-        user_styles << s.add_style(user_default_style)
+      resources.each do |resource, rindex|
+        resource[:collection].each_with_index do |element, eindex|
+          value = user.send(resource[:name]).fetch(element.id, 0)
+
+          resource[:totals][eindex] += value
+
+          user_values << value
+          user_styles << s.add_style(user_default_style)
+        end
       end
 
-      butters.each do |butter|
-        user_values << user_butters.fetch(butter.id, 0)
-        user_styles << s.add_style(user_default_style)
-      end
-
-      @cheeses.each do |cheese|
-        user_values << user_cheeses.fetch(cheese.id, 0)
-        user_styles << s.add_style(user_default_style)
-      end
-
-      sheet.add_row user_values, style: user_styles
+      sheet.add_row user_values, style: user_styles, height: 20
     end
+
+    total << resources[0][:totals]
+    total << resources[1][:totals]
+    total << resources[2][:totals]
+    total.flatten!
+
+    sheet.rows.insert(1, Axlsx::Row.new(
+      sheet,
+      total,
+      style: [s.add_style(default_style.merge(b: true))] * total.size,
+      height: 20
+    ))
+
+    # Tricky, to avoid a duplicate in our sheet
+    sheet.rows.delete_at(sheet.rows.size-1)
   end
 end
