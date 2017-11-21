@@ -42,7 +42,7 @@ wb.styles do |s|
     total  = ["Totaux", "", ""]
     resources = [{
         collection: @yaourts,
-        name:       :yaourts,
+        name:       :computed_yaourts,
         totals:     Array.new(@yaourts.size, 0)
       },
       {
@@ -75,7 +75,7 @@ wb.styles do |s|
 
       resources.each do |resource, rindex|
         resource[:collection].each_with_index do |element, eindex|
-          value = user.send(resource[:name]).fetch(element.id, 0)
+          value = user.ordering.send(resource[:name]).fetch(element.id, 0)
 
           resource[:totals][eindex] += value
 
