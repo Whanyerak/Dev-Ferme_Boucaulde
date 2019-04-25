@@ -1,24 +1,6 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Ferme de la Boucaudle
+## Yaourt management
+<br>
+This is a Website which permit users to command the type of yogurt they want in their cart.<br>
+<br>
+Developed in Ruby on Rails.
